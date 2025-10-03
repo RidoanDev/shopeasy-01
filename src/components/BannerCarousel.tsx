@@ -22,22 +22,39 @@ export const BannerCarousel: React.FC = () => {
   }, []);
 
   return (
-    <section className="w-full overflow-hidden">
-      <div className="relative w-full h-40 md:h-64">
+    <section className="w-full overflow-hidden px-4 md:px-6 py-4">
+      <div className="relative w-full h-48 md:h-80 lg:h-96 max-w-7xl mx-auto rounded-2xl overflow-hidden shadow-2xl">
         {banners.map((banner, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-opacity duration-500 ${
-              index === currentBanner ? 'opacity-100' : 'opacity-0'
+            className={`absolute inset-0 transition-all duration-700 ${
+              index === currentBanner ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
             }`}
           >
             <img
               src={banner}
-              alt={`Banner ${index + 1}`}
-              className="w-full h-full object-cover"
+              alt={`ZupraMart Banner ${index + 1}`}
+              className="w-full h-full object-cover object-center"
+              loading="lazy"
             />
           </div>
         ))}
+        
+        {/* Dots indicator */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+          {banners.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentBanner(index)}
+              className={`w-2 h-2 rounded-full transition-all ${
+                index === currentBanner 
+                  ? 'bg-white w-8' 
+                  : 'bg-white/50 hover:bg-white/75'
+              }`}
+              aria-label={`Go to banner ${index + 1}`}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

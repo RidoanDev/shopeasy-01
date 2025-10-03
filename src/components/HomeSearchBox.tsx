@@ -16,9 +16,9 @@ export const HomeSearchBox: React.FC = () => {
     : [];
 
   return (
-    <div className="relative">
-      <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+    <div className="relative px-4 md:px-6 py-4">
+      <div className="relative max-w-2xl mx-auto">
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-primary z-10" />
         <Input
           type="text"
           placeholder="Search products..."
@@ -29,12 +29,12 @@ export const HomeSearchBox: React.FC = () => {
           }}
           onFocus={() => setShowResults(true)}
           onBlur={() => setTimeout(() => setShowResults(false), 200)}
-          className="pl-10 h-12 border-2 border-[#166534] focus-visible:ring-[#166534]"
+          className="pl-12 pr-4 h-14 text-base border-2 border-primary/20 rounded-2xl shadow-lg bg-background/95 backdrop-blur-sm focus-visible:ring-2 focus-visible:ring-primary focus-visible:border-primary transition-all"
         />
       </div>
 
       {showResults && searchQuery.trim() && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-background border rounded-lg shadow-lg max-h-96 overflow-y-auto z-50">
+        <div className="absolute top-full left-0 right-0 mt-2 mx-4 md:mx-auto md:max-w-2xl bg-background/95 backdrop-blur-md border-2 border-primary/20 rounded-2xl shadow-2xl max-h-96 overflow-y-auto z-50">
           {filteredProducts.length > 0 ? (
             <div className="p-4 grid grid-cols-2 md:grid-cols-3 gap-4">
               {filteredProducts.slice(0, 6).map((product) => (
@@ -42,7 +42,7 @@ export const HomeSearchBox: React.FC = () => {
               ))}
             </div>
           ) : (
-            <div className="p-4 text-center text-muted-foreground">
+            <div className="p-8 text-center text-muted-foreground">
               No products found
             </div>
           )}
